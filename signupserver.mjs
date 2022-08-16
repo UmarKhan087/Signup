@@ -12,7 +12,10 @@ const port = process.env.PORT || 3000;
 
 
 let userBase = []; // TODO: replace this with mongoDB
-
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+  })
+  
 app.post("/signup", (req, res) => {
 
     let body = req.body;
