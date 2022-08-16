@@ -11,7 +11,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node signupserver.mjs",
-    "dev": "nodemon index.html"
+    "dev": "nodemon signupserver.mjs"
   },
   "repository": {
     "type": "git",
