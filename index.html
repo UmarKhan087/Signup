@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
     <title>Document</title>
 
     <style>
@@ -30,12 +32,11 @@
             background-image: url("./BG.jpg");
 
         }
-        
-        .clserror{
+
+        .clserror {
 
             color: crimson;
         }
-        
     </style>
 </head>
 
@@ -68,8 +69,11 @@
 
         <br>
         <input type="submit" name="signup" value="Signup">
+
         <br>
-        <div id="errorMsg" class="clsError"></div>
+        <!-- <p> -->
+        <div id="errorMsg" class="clserror"></div>
+        <!-- </p> -->
     </form>
 
 
@@ -105,10 +109,10 @@
                 console.log("please fill");
             }
 
-            firstName=usr_fnm;
-            lastName=usr_lnm;
-            email=usr_eml;
-            password=usr_pwd;
+            firstName = usr_fnm;
+            lastName = usr_lnm;
+            email = usr_eml;
+            password = usr_pwd;
 
             axios.post('https://umarsignupserver.herokuapp.com/signup/', {
 
@@ -121,11 +125,11 @@
                 .then(function (response) {
                     console.log(response.data);
                     document.getElementById("errorMsg").innerHTML = response.data.message;
-                     
+
                 })
                 .catch(function (error) {
                     console.log(error.response.data);
-                    document.getElementById("errorMsg").innerHTML =error.response.data.message;
+                    document.getElementById("errorMsg").innerHTML = error.response.data.message;
                 });
 
 

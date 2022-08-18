@@ -1,11 +1,15 @@
 import express from "express"
 import cors from "cors"
 import { nanoid } from 'nanoid'
+import { MongoClient } from 'mongodb';
 
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+const uri = "mongodb+srv://abc:abc@cluster0.zbfvct0.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri);
 
 
 const port = process.env.PORT || 3000;
