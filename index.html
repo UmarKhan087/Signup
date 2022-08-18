@@ -116,12 +116,11 @@
             })
                 .then(function (response) {
                     console.log(response.data);
-                    // document.querySelector("#message").innerHTML = response.data.message;
-                    document.getElementById("errorMsg").innerHTML =response.data.message;
+                     document.getElementById("errorMsg").innerHTML =response.data.message;
                 })
                 .catch(function (error) {
                     console.log(error.response.data);
-                    document.getElementById("errorMsg").innerHTML =response.data.message;
+                    document.getElementById("errorMsg").innerHTML =error.response.data.message;
                 });
 
 
