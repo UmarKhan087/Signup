@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,61 +5,106 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
 
+    <style>
+        .mystyle {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: left;
+            flex-direction: column;
+            border: 1px solid;
+            border-color: aliceblue;
+            border-radius: 10px;
+            width: fit-content;
+            margin-left: 6in;
+            padding: 3px;
+            background-image: url("./BG.jpg");
+            color: cornflowerblue;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .bdstyle {
+
+            background-image: url("./BG.jpg");
+
+        }
+    </style>
 </head>
 
-<body>
-    <h1>Signup Form</h1>
+<body class="bdstyle">
+    <form onsubmit=" UserSignup(); return false " class="mystyle">
+        <h1>My Webapp Signup</h1>
+
+        <label for="firstname">First name</label>
+        <input type="text" id="firstname">
 
 
-    <form onsubmit="signup(); return false ">
-
-        <label for="firstName">First Name</label>
-        <input type="text" id="firstName" required>
         <br>
+        <label for="lastname">Last name</label>
+        <input type="text" id="lastname">
 
-        <label for="lastName">Last Name</label>
-        <input type="text" id="lastName" required>
         <br>
+        <label for="Email">Email</label>
+        <input type="email" id="email">
 
-        <label for="email">Email</label>
-        <input type="email" id="email" required>
+
+
         <br>
-
         <label for="password">Password</label>
-        <input type="password" id="password" required>
-        <br>
+        <input type="password" id="pwd">
 
-        <label for="repeatPassword">Repeat Password</label>
-        <input type="password" id="repeatPassword" required>
         <br>
+        <label for="confirmPwd">Confirm Password</label>
+        <input type="password" id="cnPwd">
 
-        <input type="submit" value="Signup">
+
+        <br>
+        <input type="submit" name="signup" value="Signup">
+        <br>
+        <div id="errorMsg"></div>
     </form>
 
-    <p id="message"></p>
-
-
-    <br>
-    <br>
 
 
     <script>
 
-        function signup() {
+        function UserSignup() {
 
-            var firstName = document.getElementById('firstName').value;
-            var lastName = document.getElementById('lastName').value;
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
-            var repeatPassword = document.getElementById('repeatPassword').value;
+            var usr_fnm = document.getElementById("firstname").value;
+            var usr_lnm = document.getElementById("lastname").value;
+            var usr_eml = document.getElementById("email").value;
+            var usr_pwd = document.getElementById("pwd").value;
+            var usr_cn_pwd = document.getElementById("cnPwd").value;
 
-            if (password !== repeatPassword) {
-                document.querySelector("#message").innerHTML = 'Passwords do not match, please try again';
-                return;
+
+            if (
+                usr_fnm == "" ||
+                usr_lnm == "" ||
+                usr_eml == "" ||
+                usr_pwd == "" ||
+                usr_cn_pwd == ""
+            ) {
+                document.getElementById("errorMsg").innerHTML = "Please fill complete form";
+                console.log("please fill");
+            } else {
+                document.getElementById("errorMsg").innerHTML = "";
+
+                console.log("else condition");
             }
+
+            if (
+                usr_pwd !== usr_cn_pwd
+            ) {
+                document.getElementById("errorMsg").innerHTML = "your password do not match";
+                console.log("please fill");
+            }
+
+            firstName=usr_fnm;
+            lastName=usr_lnm;
+            email=usr_eml;
+            password=usr_pwd;
 
             axios.post('https://umarsignupserver.herokuapp.com/signup/', {
 
@@ -78,13 +122,12 @@
                     console.log(error.response.data);
                     document.querySelector("#message").innerHTML = error.response.data.message;
                 });
+
+
         }
 
 
-      
     </script>
-
-
 </body>
 
 </html>
